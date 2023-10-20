@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="30c6da2a-2231-44f2-a1f0-37c95909dde1" name="Changes" comment="Python task - 18/10/2023">
-      <change afterPath="$PROJECT_DIR$/src/oops_concept.py" afterDir="false" />
+    <list default="true" id="30c6da2a-2231-44f2-a1f0-37c95909dde1" name="Changes" comment="Python task - 20/10/2023">
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/aws_python.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/aws_python.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/EN_TECH Skill Level.pdf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Output.xlsx" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/SAP_ABAP_Bootcamp.xlsx" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +86,14 @@
       <option name="project" value="LOCAL" />
       <updated>1697635043936</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Python task - 20/10/2023">
+      <created>1697780662886</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1697780662886</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -123,6 +123,7 @@
     <MESSAGE value="Python Task 13/10/2023" />
     <MESSAGE value="Python Project" />
     <MESSAGE value="Python task - 18/10/2023" />
-    <option name="LAST_COMMIT_MESSAGE" value="Python task - 18/10/2023" />
+    <MESSAGE value="Python task - 20/10/2023" />
+    <option name="LAST_COMMIT_MESSAGE" value="Python task - 20/10/2023" />
   </component>
 </project>
