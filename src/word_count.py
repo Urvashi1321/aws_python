@@ -13,7 +13,7 @@ def extract_text_from_pdf(pdf_file):
 
 #Function to count unique words and their occurence
 def count_unique_words(text):
-    words = re.findall(r'\b\w+\b', text.lower()) #extract words and convert to lowercase
+    words = text.lower().split() #extract words and convert to lowercase
     word_count = Counter(words)
     return word_count
 
