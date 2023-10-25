@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="9a51d0b0-fa9d-4965-a946-fadb9e748611" name="Changes" comment="API Project">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_PROJECT/Frontend/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/API_PROJECT/Frontend/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/API_PROJECT/Frontend/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/API_PROJECT/Frontend/script.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +55,21 @@
       <option name="project" value="LOCAL" />
       <updated>1698246593650</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="API Project">
+      <created>1698246738999</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1698246738999</updated>
+    </task>
+    <task id="LOCAL-00003" summary="API Project">
+      <created>1698246809269</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1698246809269</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
