@@ -2,7 +2,6 @@ function submitForm() {
     event.preventDefault();
 
     // Get form data
-    const Emp-id = document.getElementById('Emp-id').value;
     const name = document.getElementById('name').value;
     const email = document.getElementById('email').value;
     const phone = document.getElementById('phone').value;
@@ -12,28 +11,26 @@ function submitForm() {
     const xhr = new XMLHttpRequest();
 
     // Set up request
-    xhr.open('POST', 'https://4gaplosr72.execute-api.us-east-1.amazonaws.com/test/register/', true);
+    xhr.open('POST', 'API_INVOKE_URL/register', true);
     xhr.setRequestHeader('Content-Type', 'application/json');
 
     // Set up response handler
     xhr.onreadystatechange = function() {
         if (xhr.readyState === XMLHttpRequest.DONE) {
             if (xhr.status === 200) {
-                alert('Registration successful!!');
-                document.getElementById('Emp-id').value = '';
+                alert('Registration successful!');
                 document.getElementById('name').value = '';
                 document.getElementById('email').value = '';
                 document.getElementById('phone').value = '';
                 document.getElementById('password').value = '';
             } else {
-                alert('Registration failed!! ' + xhr.responseText);
+                alert('Registration failed: ' + xhr.responseText);
             }
         }
     };
 
     // Send request
     xhr.send(JSON.stringify({
-        Emp-id: Emp-id,
         name: name,
         email: email,
         phone: phone,
