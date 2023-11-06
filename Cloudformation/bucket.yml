@@ -1,0 +1,18 @@
+Resources:
+  CloudBucketEventPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: arn:aws:lambda:us-east-1:750303177932:function:MyLambdaFunction
+      Principal: s3.amazonaws.com
+      SourceArn: "arn:aws:cloudformation:us-east-1:750303177932:stack/bucket/1cab1db0-5eb2-11ee-8a3b-0a7f2d8fc84b"
+
+
+  CloudBucketEvent:
+    Properties:
+      BucketName: "arn:aws:cloudformation:us-east-1:750303177932:stack/bucket/1cab1db0-5eb2-11ee-8a3b-0a7f2d8fc84b"
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Event: s3:ObjectCreated:*
+            Function: arn:aws:lambda:us-east-1:750303177932:function:MyLambdaFunction
+    Type: AWS::S3::Bucket

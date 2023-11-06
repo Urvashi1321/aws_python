@@ -1,0 +1,13 @@
+
+Resources:
+  MyLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: MyLambdaFunction
+      Handler: index.lambda_handler  
+      Runtime: python3.8
+      Role: arn:aws:iam::750303177932:role/MyLambdaExecutionRole
+      Code:
+        S3Bucket: urvashibucket
+        S3Key: lambda_function.zip
+

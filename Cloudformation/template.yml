@@ -1,0 +1,82 @@
+Resources:
+  MyLambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: MyLambdaExecutionRole
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+            Action: sts:AssumeRole
+
+  MyLambdaPolicy:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyName: MyLambdaPolicy
+      Roles:
+        - !Ref MyLambdaExecutionRole
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+              - s3:PutObject
+              - s3:GetObject
+            Resource: arn:aws:logs:*:*:log-group:/aws/lambda/*
+
+  MyLambdaFunction:
+    Type: AWS::Lambda::Function
+    Properties:
+      FunctionName: MyLambdaFunction
+      Handler: index.lambda_handler
+      Runtime: python3.8
+      Role: !GetAtt MyLambdaExecutionRole.Arn
+      Code:
+        S3Bucket: urvashibucket
+        S3Key: lambda_function.zip
+
+  MyS3BucketEvent:
+
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: mys3bucket-7932
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Event: 's3:ObjectCreated:*'
+            Function: !GetAtt MyLambdaFunction.Arn
+
+  S3BucketPolicy:
+    Type: "AWS::S3::BucketPolicy"
+    Properties:
+      Bucket:
+        Ref: MyS3BucketEvent
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: "S3EventNotification"
+            Effect: "Allow"
+            Principal:
+              Service: "s3.amazonaws.com"
+            Action: "s3:PutObject"
+            Resource:
+              Fn::Sub: "arn:aws:s3:::${MyS3BucketEvent}/*"
+            Condition:
+              StringEquals:
+                "aws:SourceS3":
+                  Fn::GetAtt:
+                    - MyS3BucketEvent
+                    - Arn
+
+  CloudBucketEventPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt MyLambdaFunction.Arn
+      Principal: s3.amazonaws.com
+      SourceArn: !GetAtt MyS3BucketEvent.Arn
