@@ -1,42 +1,53 @@
-import PyPDF2
 import re
+import PyPDF2
 
-def categorize_pdf_data(pdf_path):
+def categorize_data(pdf_path):
     data_dict = {}
-    root_cause_flag = False
     current_key = None
+    current_value = ""
 
     with open(pdf_path, 'rb') as file:
         pdf_reader = PyPDF2.PdfReader(file)
-        num_pages = pdf_reader.numPages
+        total_pages = pdf_reader.numPages
 
-        for page_num in range(num_pages):
+        for page_num in range(total_pages):
             page = pdf_reader.getPage(page_num)
             text = page.extractText()
 
             # Define the regular expression pattern
-            pattern = re.compile(r'(\d+\.\s.*?)(?=\sDescription|$)')
+            pattern = re.compile(r'^\d+\.\s*\n\n', re.MULTILINE)
 
-            # Find all matches in the page text
-            matches = re.finditer(pattern, text)
+            # Find matches in the text
+            matches = pattern.finditer(text)
 
             for match in matches:
-                key = match.group(1).strip()
+                # Extract the key
+                current_key = text[match.start():match.end()].strip()
 
-                if 'Description' in key:
-                    root_cause_flag = True
-                    current_key = key.replace('Description', '').strip()
-                    data_dict[current_key] = ''
-                elif not root_cause_flag:
-                    current_key = key
-                    data_dict[current_key] = ''
-                else:
-                    # Append the matched text to the current key's value
-                    data_dict[current_key] += match.group(1).strip() + '\n'
+                # Extract the value until the next key
+                if current_key is not None:
+                    start_index = match.end()
+                    
+                    try:
+                        # Try to get the next match's start index
+                        end_index = next(matches).start()
+                    except StopIteration:
+                        # If no more matches, set end_index to None
+                        end_index = None
+
+                    current_value = text[start_index:end_index].strip()
+
+                    # Store the key-value pair in the dictionary
+                    data_dict[current_key] = current_value
 
     return data_dict
 
-# Example usage
+# Replace 'your_pdf_file.pdf' with the path to your PDF file
 pdf_path = 'your_pdf_file.pdf'
-result = categorize_pdf_data(pdf_path)
-print(result)
+result = categorize_data(pdf_path)
+
+# Print the result
+for key, value in result.items():
+    print(f"{key}: {value}")
+
+
